@@ -29,7 +29,8 @@
   <!-- Menu de navigation global -->
   <nav>
     <a href="/">Accueil</a> | 
-    <a href="/articles">Articles</a>
+    <a href="/articles">Articles</a> | 
+    <a href="/about">À propos</a>
   </nav>
 
   <!-- Contenu principal injecté depuis BaseController -->
