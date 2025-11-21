@@ -60,4 +60,17 @@ class Router
         http_response_code(404);
         echo "404 - Page non trouvée";
     }
+    /**
+ * Ajoute une route HTTP de type POST.
+ *
+ * Cette méthode permet de définir un chemin associé à une action
+ * qui sera exécutée lorsqu'une requête POST correspondra à ce chemin.
+ *
+ * @param string $path   Chemin de la route (ex. "/articles")
+ * @param string $action Action à exécuter (ex. "App\Controllers\ArticleController@index")
+ */
+public function post(string $path, string $action): void
+{
+    $this->routes['POST'][$path] = $action;
+}
 }
