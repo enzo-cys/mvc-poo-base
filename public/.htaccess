@@ -1,21 +1,4 @@
-# Active le moteur de réécriture d'URL
 RewriteEngine On
-
-# Définit le répertoire de base pour la réécriture
-# En local, cela reste vide ou "/"
-# Sur Plesk en sous-dossier, ajuster avec le nom du sous-dossier (ex: /mon-projet/)
-RewriteBase /
-
-# Redirige l'accès direct à index.php vers la racine
-RewriteCond %{THE_REQUEST} ^.*/index\.php
-RewriteRule ^(.*)index\.php$ /$1 [R=301,L]
-
-# Ne réécrit pas si le fichier existe déjà (sauf index.php)
-RewriteCond %{REQUEST_FILENAME} !-f [OR]
-RewriteCond %{REQUEST_FILENAME} index\.php$
-
-# Ne réécrit pas si le dossier existe déjà
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# Redirige toutes les requêtes vers index.php
 RewriteRule . index.php [L]

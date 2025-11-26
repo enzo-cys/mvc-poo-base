@@ -1,5 +1,4 @@
 <?php
-
 namespace Core;
 
 /**
@@ -37,39 +36,5 @@ class BaseController
 
         // Inclusion du layout de base, qui va utiliser la variable $content pour afficher la vue
         require __DIR__ . '/../app/Views/layouts/base.php';
-    }
-
-    /**
-     * Génère une URL en tenant compte du BASE_PATH
-     *
-     * @param string $path Chemin relatif (ex: "/articles", "about")
-     * @return string URL complète avec BASE_PATH
-     */
-    protected function url(string $path = ''): string
-    {
-        return url($path);
-    }
-
-    /**
-     * Génère un chemin vers un asset (CSS, JS, images)
-     *
-     * @param string $path Chemin relatif vers l'asset (ex: "css/global.css")
-     * @return string URL complète vers l'asset
-     */
-    protected function asset(string $path): string
-    {
-        return asset($path);
-    }
-
-    /**
-     * Redirige vers une URL
-     *
-     * @param string $path Chemin relatif (ex: "/articles")
-     * @return void
-     */
-    protected function redirect(string $path): void
-    {
-        header('Location: ' . $this->url($path));
-        exit;
     }
 }

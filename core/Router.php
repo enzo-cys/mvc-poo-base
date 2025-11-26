@@ -1,5 +1,4 @@
 <?php
-
 namespace Core;
 
 /**
@@ -42,36 +41,6 @@ class Router
         // On extrait uniquement le chemin (sans paramètres GET ou #ancre)
         $path = parse_url($uri, PHP_URL_PATH) ?? '/';
 
-        // Supprime /index.php de l'URI s'il est présent
-        $path = preg_replace('#/index\.php$#', '', $path);
-
-        // Si le chemin se termine par index.php sans slash avant, on le retire aussi
-        $path = preg_replace('#index\.php$#', '', $path);
-
-        // Si le chemin est vide après nettoyage, on force "/"
-        if (empty($path)) {
-            $path = '/';
-        }
-
-        // Enlève le BASE_PATH du début de l'URI pour obtenir le chemin relatif
-        // Exemple : si BASE_PATH="/mon-projet" et URI="/mon-projet/articles"
-        // alors $path devient "/articles"
-        if (defined('BASE_PATH') && BASE_PATH !== '' && BASE_PATH !== '/') {
-            $basePath = '/' . trim(BASE_PATH, '/');
-            if (strpos($path, $basePath) === 0) {
-                $path = substr($path, strlen($basePath));
-                // Si le chemin est vide après suppression, on force "/"
-                if (empty($path)) {
-                    $path = '/';
-                }
-            }
-        }
-
-        // Normaliser le chemin
-        if (empty($path)) {
-            $path = '/';
-        }
-
         // Vérifie si une route correspond à ce chemin pour la méthode demandée
         foreach ($this->routes[$method] ?? [] as $route => $action) {
             if ($route === $path) {
@@ -92,16 +61,16 @@ class Router
         echo "404 - Page non trouvée";
     }
     /**
-     * Ajoute une route HTTP de type POST.
-     *
-     * Cette méthode permet de définir un chemin associé à une action
-     * qui sera exécutée lorsqu'une requête POST correspondra à ce chemin.
-     *
-     * @param string $path   Chemin de la route (ex. "/articles")
-     * @param string $action Action à exécuter (ex. "App\Controllers\ArticleController@index")
-     */
-    public function post(string $path, string $action): void
-    {
-        $this->routes['POST'][$path] = $action;
-    }
+ * Ajoute une route HTTP de type POST.
+ *
+ * Cette méthode permet de définir un chemin associé à une action
+ * qui sera exécutée lorsqu'une requête POST correspondra à ce chemin.
+ *
+ * @param string $path   Chemin de la route (ex. "/articles")
+ * @param string $action Action à exécuter (ex. "App\Controllers\ArticleController@index")
+ */
+public function post(string $path, string $action): void
+{
+    $this->routes['POST'][$path] = $action;
+}
 }
