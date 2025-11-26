@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Layout principal
  * -----------------
@@ -8,6 +9,7 @@
 ?>
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8">
 
@@ -16,16 +18,17 @@
 
   <!-- Bonne pratique : rendre le site responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/assets/css/global.css">
-  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="stylesheet" href="<?= asset('css/global.css') ?>">
+  <link rel="icon" type="image/png" href="<?= asset('images/favicon.png') ?>">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
   <!-- Menu de navigation global -->
   <nav>
-    <a href="/">Accueil</a> | 
-    <a href="/articles">Articles</a> |
-    <a href="/about">À propos</a>
+    <a href="<?= url('/') ?>">Accueil</a> |
+    <a href="<?= url('/articles') ?>">Articles</a> |
+    <a href="<?= url('/about') ?>">À propos</a>
   </nav>
 
   <!-- Contenu principal injecté depuis BaseController -->
@@ -33,4 +36,5 @@
     <?= $content ?>
   </main>
 </body>
+
 </html>

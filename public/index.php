@@ -1,9 +1,12 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php'; 
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->safeLoad();
+
+// Charge le fichier de configuration pour initialiser les constantes (BASE_PATH, etc.)
+require_once __DIR__ . '/../core/config.php';
 
 use Core\Router;
 
